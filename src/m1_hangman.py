@@ -35,10 +35,10 @@ def get_word(n):
         f.readline()
         string = f.read()
         words = string.split()
+        item = []
     while len(item) < n:
         r = random.randrange(0,len(words))
         temp = words[r]
-        item = []
         for x in temp:
             item += [x]
     return item
@@ -50,20 +50,22 @@ def guessing(m, word, false):
             print(x, end="")
         print()
         guess = input('Letter:')
-        temp = False
-        for k in range(len(word)):
-            if guess == word[k]:
-                false[k] = guess
-                temp = True
-        if not temp:
-            m -= 1
-            print("Sorry, there are no ", guess, " letters in word.")
+        false, m = check(word,guess,false,m)
         print("You have ", m, " unsuccessful guesses left.")
         if false == word:
             break
     return m
 
-
+def check(word,guess,false,m):
+    temp = False
+    for k in range(len(word)):
+        if guess == word[k]:
+            false[k] = guess
+            temp = True
+    if not temp:
+        m -= 1
+        print("Sorry, there are no ", guess, " letters in word.")
+    return false, m
 
 
 main()
