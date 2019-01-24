@@ -10,7 +10,10 @@ def main():
     n, word, m, false = initialization()
     m = guessing(m, word, false)
     if m == 0:
-        print("You lost. The secret word is ", word)
+        print("You lost. The secret word is ", end="")
+        for x in word:
+            print(x, end="")
+        print()
     else:
         print("You won. Good job.")
     if input("Play another game?") == "n":
